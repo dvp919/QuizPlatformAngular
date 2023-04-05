@@ -1,0 +1,62 @@
+<mat-toolbar color="warn">
+
+    <a routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu_book</mat-icon>
+    </a>
+    <span>Quiz Platform</span>
+    
+    <span class="example-spacer"></span>
+
+
+    <a 
+      *ngIf="!login.isLoggedIn()"
+     [routerLink]="'/login'"
+    class="example-icon favourite-icon ml20"
+    mat-button
+    aria-label="Example icon-button with heart icon" >
+    {{"Login" | uppercase}} 
+    </a>
+
+    
+    <a 
+    *ngIf="!login.isLoggedIn()"
+    [routerLink]="'/signup'" 
+    class="example-icon favourite-icon ml20"
+    mat-button
+    aria-label="Example icon-button with heart icon">
+    {{"Register" | uppercase}} 
+    </a>
+
+    
+
+    <a 
+    (click)="logout()"
+    *ngIf="login.isLoggedIn()"
+    [routerLink]="'/'" 
+    class="example-icon favourite-icon ml20"
+    mat-button
+    aria-label="Example icon-button with heart icon">
+     {{"Logout" | uppercase}} 
+    </a>
+    
+
+    <button 
+    *ngIf="isLoggedIn && user && login.getUserRole()=='ADMIN'"
+    class="example-icon favourite-icon ml20"
+    style=" font-size: 15px;"
+    mat-button
+    routerLink="/admin/profile"
+    aria-label="Example icon-button with heart icon">
+    {{ this.login.getUser().username| uppercase}}
+  </button>
+
+  <a 
+    *ngIf="isLoggedIn && user && login.getUserRole()=='NORMAL'"
+    class="example-icon favourite-icon ml20"
+    style=" font-size: 15px;"
+    mat-button
+    aria-label="Example icon-button with heart icon">
+    {{ this.login.getUser().username| uppercase}}
+</a>
+
+  </mat-toolbar>
